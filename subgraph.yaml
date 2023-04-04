@@ -1,0 +1,61 @@
+specVersion: 0.0.5
+schema:
+    file: ./schema.graphql
+dataSources:
+    - kind: ethereum
+      name: ERC721Marketplace
+      network: mumbai
+      source:
+          address: "0xe51f4E015340580c2290384347280542E05aAC63"
+          abi: ERC721Marketplace
+          startBlock: 33909911
+      mapping:
+          kind: ethereum/events
+          apiVersion: 0.0.7
+          language: wasm/assemblyscript
+          entities:
+              - ERC721ItemBought
+              - ERC721ItemDelisted
+              - ERC721ItemListed
+              - ERC721ItemUpdated
+          abis:
+              - name: ERC721Marketplace
+                file: ./abis/ERC721Marketplace.json
+          eventHandlers:
+              - event: ERC721ItemBought(indexed address,indexed address,uint256,uint256,bytes)
+                handler: handleERC721ItemBought
+              - event: ERC721ItemDelisted(indexed address,indexed address,uint256)
+                handler: handleERC721ItemDelisted
+              - event: ERC721ItemListed(indexed address,indexed address,uint256,uint256)
+                handler: handleERC721ItemListed
+              - event: ERC721ItemUpdated(indexed address,indexed address,uint256,uint256)
+                handler: handleERC721ItemUpdated
+          file: ./src/erc-721-marketplace.ts
+    - kind: ethereum
+      name: ERC1155Marketplace
+      network: mumbai
+      source:
+          address: "0xe51f4E015340580c2290384347280542E05aAC63"
+          abi: ERC1155Marketplace
+      mapping:
+          kind: ethereum/events
+          apiVersion: 0.0.7
+          language: wasm/assemblyscript
+          entities:
+              - ERC1155ItemBought
+              - ERC1155ItemDelisted
+              - ERC1155ItemListed
+              - ERC1155ItemUpdated
+          abis:
+              - name: ERC1155Marketplace
+                file: ./abis/ERC1155Marketplace.json
+          eventHandlers:
+              - event: ERC1155ItemBought(indexed address,indexed address,uint256,uint256,uint256,bytes)
+                handler: handleERC1155ItemBought
+              - event: ERC1155ItemDelisted(indexed address,indexed address,uint256)
+                handler: handleERC1155ItemDelisted
+              - event: ERC1155ItemListed(indexed address,indexed address,uint256,uint256,uint256)
+                handler: handleERC1155ItemListed
+              - event: ERC1155ItemUpdated(indexed address,indexed address,uint256,uint256)
+                handler: handleERC1155ItemUpdated
+          file: ./src/erc-1155-marketplace.ts

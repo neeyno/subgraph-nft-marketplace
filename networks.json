@@ -1,0 +1,11 @@
+{
+  "mumbai": {
+    "ERC721Marketplace": {
+      "address": "0x8b49fdeE1F20e026cF6CdD8aBeA2CDF3Bcf36F43",
+      "startBlock": 33909911
+    },
+    "ERC1155Marketplace": {
+      "address": "0xDfD96AB8266Be847481b4e14d28F4E8cd0272E13"
+    }
+  }
+}

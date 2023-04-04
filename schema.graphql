@@ -1,0 +1,114 @@
+type ActiveItem @entity {
+    id: ID!
+    seller: Bytes! # address
+    nftContract: Bytes! # address
+    tokenId: BigInt! # uint256
+    quantity: BigInt # uint256, nullable for ERC721 items
+    price: BigInt! # uint256, nullable # "listed" or "delisted"
+    itemType: String! # either "ERC721" or "ERC1155"
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
+
+# type SoldItem @entity {
+#     id: ID!
+#     buyer: Bytes! # address
+#     nftContract: Bytes! # address
+#     tokenId: BigInt! # uint256
+#     quantity: BigInt # uint256, nullable for ERC721 items
+#     price: BigInt # uint256, nullable # "listed" or "delisted"
+#     itemType: String! # either "ERC721" or "ERC1155"
+#     blockNumber: BigInt!
+#     blockTimestamp: BigInt!
+#     transactionHash: Bytes!
+# }
+
+# type ERC721ItemBought @entity(immutable: true) {
+#     id: ID!
+#     buyer: Bytes! # address
+#     nftContract: Bytes! # address
+#     tokenId: BigInt! # uint256
+#     price: BigInt! # uint256
+#     returnData: Bytes! # bytes
+#     blockNumber: BigInt!
+#     blockTimestamp: BigInt!
+#     transactionHash: Bytes!
+# }
+
+# type ERC721ItemDelisted @entity(immutable: true) {
+#     id: ID!
+#     seller: Bytes! # address
+#     nftContract: Bytes! # address
+#     tokenId: BigInt! # uint256
+#     blockNumber: BigInt!
+#     blockTimestamp: BigInt!
+#     transactionHash: Bytes!
+# }
+
+# type ERC721ItemListed @entity(immutable: true) {
+#     id: ID!
+#     seller: Bytes! # address
+#     nftContract: Bytes! # address
+#     tokenId: BigInt! # uint256
+#     price: BigInt! # uint256
+#     blockNumber: BigInt!
+#     blockTimestamp: BigInt!
+#     transactionHash: Bytes!
+# }
+
+# type ERC721ItemUpdated @entity(immutable: true) {
+#     id: ID!
+#     seller: Bytes! # address
+#     nftContract: Bytes! # address
+#     tokenId: BigInt! # uint256
+#     price: BigInt! # uint256
+#     blockNumber: BigInt!
+#     blockTimestamp: BigInt!
+#     transactionHash: Bytes!
+# }
+# type ERC1155ItemBought @entity(immutable: true) {
+#     id: ID!
+#     buyer: Bytes! # address
+#     nftContract: Bytes! # address
+#     tokenId: BigInt! # uint256
+#     quantity: BigInt! # uint256
+#     price: BigInt! # uint256
+#     returnData: Bytes! # bytes
+#     blockNumber: BigInt!
+#     blockTimestamp: BigInt!
+#     transactionHash: Bytes!
+# }
+
+# type ERC1155ItemDelisted @entity(immutable: true) {
+#     id: ID!
+#     seller: Bytes! # address
+#     nftContract: Bytes! # address
+#     tokenId: BigInt! # uint256
+#     blockNumber: BigInt!
+#     blockTimestamp: BigInt!
+#     transactionHash: Bytes!
+# }
+
+# type ERC1155ItemListed @entity(immutable: true) {
+#     id: ID!
+#     seller: Bytes! # address
+#     nftContract: Bytes! # address
+#     tokenId: BigInt! # uint256
+#     quantity: BigInt! # uint256
+#     price: BigInt! # uint256
+#     blockNumber: BigInt!
+#     blockTimestamp: BigInt!
+#     transactionHash: Bytes!
+# }
+
+# type ERC1155ItemUpdated @entity(immutable: true) {
+#     id: ID!
+#     seller: Bytes! # address
+#     nftContract: Bytes! # address
+#     tokenId: BigInt! # uint256
+#     newPrice: BigInt! # uint256
+#     blockNumber: BigInt!
+#     blockTimestamp: BigInt!
+#     transactionHash: Bytes!
+# }
