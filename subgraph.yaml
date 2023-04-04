@@ -37,6 +37,7 @@ dataSources:
       source:
           address: "0xe51f4E015340580c2290384347280542E05aAC63"
           abi: ERC1155Marketplace
+          startBlock: 33909911
       mapping:
           kind: ethereum/events
           apiVersion: 0.0.7
