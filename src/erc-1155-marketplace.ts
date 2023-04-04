@@ -43,7 +43,7 @@ export function handleERC1155ItemListed(event: ERC1155ItemListedEvent): void {
     activeItem.nftContract = event.params.nftContract;
     activeItem.tokenId = event.params.tokenId;
     activeItem.price = event.params.price;
-    activeItem!.quantity = event.params.quantity;
+    activeItem.quantity = event.params.quantity;
 
     activeItem.itemType = ItemTypeERC1155;
 
@@ -51,7 +51,7 @@ export function handleERC1155ItemListed(event: ERC1155ItemListedEvent): void {
     activeItem.blockTimestamp = event.block.timestamp;
     activeItem.transactionHash = event.transaction.hash;
 
-    activeItem!.save();
+    activeItem.save();
 }
 
 export function handleERC1155ItemBought(event: ERC1155ItemBoughtEvent): void {
@@ -61,11 +61,11 @@ export function handleERC1155ItemBought(event: ERC1155ItemBoughtEvent): void {
     );
 
     let activeItem = ActiveItem.load(itemId);
-    // let soldhItem = SoldItem.load(itemId);
 
     if (activeItem) {
-        let prevQuantity = activeItem.quantity ?? BigInt.fromI32(0);
-        let quantity = prevQuantity.minus(event.params.quantity);
+        let quantity = ((activeItem.quantity !== null
+            ? activeItem.quantity
+            : BigInt.fromI32(0)) as BigInt).minus(event.params.quantity);
 
         if (quantity < BigInt.fromI32(1)) {
             store.remove("ActiveItem", itemId);
