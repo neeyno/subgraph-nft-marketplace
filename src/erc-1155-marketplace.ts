@@ -13,21 +13,19 @@ import { ActiveItem } from "../generated/schema";
 const ItemTypeERC1155 = "ERC1155";
 
 function getIdfromERC1155EventParams(
+    account: Address,
     tokenId: BigInt,
     nftContract: Address
 ): string {
     // event.transaction.hash.concatI32(event.logIndex.toI32())
     return (
-        ItemTypeERC1155 +
-        "-" +
-        tokenId.toString() +
-        "-" +
-        nftContract.toHexString()
+        account.toHexString() + tokenId.toString() + nftContract.toHexString()
     );
 }
 
 export function handleERC1155ItemListed(event: ERC1155ItemListedEvent): void {
     let itemId = getIdfromERC1155EventParams(
+        event.params.seller,
         event.params.tokenId,
         event.params.nftContract
     );
@@ -56,6 +54,7 @@ export function handleERC1155ItemListed(event: ERC1155ItemListedEvent): void {
 
 export function handleERC1155ItemBought(event: ERC1155ItemBoughtEvent): void {
     let itemId = getIdfromERC1155EventParams(
+        event.params.seller,
         event.params.tokenId,
         event.params.nftContract
     );
@@ -78,6 +77,7 @@ export function handleERC1155ItemBought(event: ERC1155ItemBoughtEvent): void {
 
 export function handleERC1155ItemUpdated(event: ERC1155ItemUpdatedEvent): void {
     let itemId = getIdfromERC1155EventParams(
+        event.params.seller,
         event.params.tokenId,
         event.params.nftContract
     );
@@ -94,6 +94,7 @@ export function handleERC1155ItemDelisted(
     event: ERC1155ItemDelistedEvent
 ): void {
     let itemId = getIdfromERC1155EventParams(
+        event.params.seller,
         event.params.tokenId,
         event.params.nftContract
     );

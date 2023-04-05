@@ -22,7 +22,7 @@ dataSources:
               - name: ERC721Marketplace
                 file: ./abis/ERC721Marketplace.json
           eventHandlers:
-              - event: ERC721ItemBought(indexed address,indexed address,uint256,uint256,bytes)
+              - event: ERC721ItemBought(indexed address,indexed address,indexed address,uint256,uint256,bytes)
                 handler: handleERC721ItemBought
               - event: ERC721ItemDelisted(indexed address,indexed address,uint256)
                 handler: handleERC721ItemDelisted
@@ -51,7 +51,7 @@ dataSources:
               - name: ERC1155Marketplace
                 file: ./abis/ERC1155Marketplace.json
           eventHandlers:
-              - event: ERC1155ItemBought(indexed address,indexed address,uint256,uint256,uint256,bytes)
+              - event: ERC1155ItemBought(indexed address,indexed address,indexed address,uint256,uint256,uint256,bytes)
                 handler: handleERC1155ItemBought
               - event: ERC1155ItemDelisted(indexed address,indexed address,uint256)
                 handler: handleERC1155ItemDelisted

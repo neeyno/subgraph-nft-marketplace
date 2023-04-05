@@ -14,21 +14,19 @@ import { ActiveItem } from "../generated/schema";
 const ItemTypeERC721 = "ERC721";
 
 function getIdfromERC721EventParams(
+    account: Address,
     tokenId: BigInt,
     nftContract: Address
 ): string {
     // event.transaction.hash.concatI32(event.logIndex.toI32())
     return (
-        ItemTypeERC721 +
-        "-" +
-        tokenId.toString() +
-        "-" +
-        nftContract.toHexString()
+        account.toHexString() + tokenId.toString() + nftContract.toHexString()
     );
 }
 
 export function handleERC721ItemListed(event: ERC721ItemListedEvent): void {
     let itemId = getIdfromERC721EventParams(
+        event.params.seller,
         event.params.tokenId,
         event.params.nftContract
     );
@@ -56,6 +54,7 @@ export function handleERC721ItemListed(event: ERC721ItemListedEvent): void {
 
 export function handleERC721ItemDelisted(event: ERC721ItemDelistedEvent): void {
     let itemId = getIdfromERC721EventParams(
+        event.params.seller,
         event.params.tokenId,
         event.params.nftContract
     );
@@ -72,6 +71,7 @@ export function handleERC721ItemDelisted(event: ERC721ItemDelistedEvent): void {
 
 export function handleERC721ItemBought(event: ERC721ItemBoughtEvent): void {
     let itemId = getIdfromERC721EventParams(
+        event.params.seller,
         event.params.tokenId,
         event.params.nftContract
     );
@@ -86,6 +86,7 @@ export function handleERC721ItemBought(event: ERC721ItemBoughtEvent): void {
 
 export function handleERC721ItemUpdated(event: ERC721ItemUpdatedEvent): void {
     let itemId = getIdfromERC721EventParams(
+        event.params.seller,
         event.params.tokenId,
         event.params.nftContract
     );
